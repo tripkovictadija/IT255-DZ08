@@ -1,0 +1,59 @@
+<form [formGroup]="roomForm" (ngSubmit)="submitForm()">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="roomNumber" style="margin-bottom: 5px; ">Unesite broj sobe:</label>
+                <input (ngModelChange)="osluskivac($event)" formControlName="roomNumber" name="roomNumber" id="roomNumber" #newroomNumber
+                    class="form-control" placeholder="Molimo unesite broj sobe"
+                    required="required">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="name" style="margin-bottom: 5px;">Upisite naziv hotela:</label>
+                <input (ngModelChange)="osluskivac($event)" formControlName="name" name="name" id="name" #newh_name class="form-control"
+                    placeholder="Molimo unesite naziv hotela" required="required">
+            </div>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="brOsoba" style="margin-bottom: 5px;">Unesite broj osoba: </label>
+            <input [formControl]="$any(roomForm.controls['brOsoba'])" formControlName="brOsoba" name="brOsoba" id="brOsoba" #newbrOsoba
+                class="form-control" placeholder="Molimo unesite broj osoba"
+                required="required">
+
+                <div *ngIf="absControll.hasError('invalidForm')" class="alert alert-primary">Unesite iskljucivo brojeve!
+                </div>
+
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="price" style="margin-bottom: 5px;">Unesite cenu za vece: </label>
+            <input [formControl]="$any(roomForm.controls['price'])" formControlName="price" name="price" id="price" #newprice class="form-control"
+                placeholder="Molimo unesite cenu" required="required">
+
+            <div *ngIf="absControll.hasError('invalidForm')" class="alert alert-primary">Unesite iskljucivo brojeve!
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="brNoci" style="margin-bottom: 5px; ">Unesite broj nocenja:</label>
+            <input formControlName="brNoci" name="brNoci" id="brNoci" #newbrNoci
+                class="form-control" placeholder="Molimo unesite broj nocenja"
+                required="required">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12" style="margin-top: 10px;">
+        <button  [disabled]="( absControll.hasError('invalidForm') || !roomForm.controls['price'].value || !roomForm.controls['brOsoba'].value )" style="min-width: 100%; " class="btn btn-success btn-send pt-2 btn-block" type="submit"
+            name="submit">Dodajte sobu</button>
+    </div>
+</div>
+
+</form>

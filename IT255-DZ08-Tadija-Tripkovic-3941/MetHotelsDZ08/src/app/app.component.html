@@ -1,0 +1,75 @@
+<header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
+                aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarExample01">
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="#">Pocetna</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">O nama</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Popusti</a>
+                    </li>
+                  </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+
+    <!-- Background image -->
+    <div class="p-5 text-center bg-image" alt="Wild Landscape" style="
+      background-image: url('https://cdn.dribbble.com/users/1415568/screenshots/3727241/shot_16.gif');
+      height: 550px;
+      margin-top: 58px;    
+      background-repeat: no-repeat;
+      background-size: cover;">
+        <div class="container w-50" style="max-width: 35%; text-align: left;">
+            <div class="row ">
+                <div class="col-sm-7">
+                    <div class="card mt-2 mx-auto p-4 bg-light">
+                        <div class="card-body bg-light">
+                            <form id="contact-form">
+                                <div class="controls">
+                                    <app-dodaj-sobu (dodatiSobu)="addRoom($event)"> </app-dodaj-sobu>
+                                    <div style="margin-top: 10px;">
+                                        <label for="title" style="margin-bottom: 5px;">Pretrazite sobe prema ceni:</label>
+                                        <input input [(ngModel)]="userPrice"
+                                            style="max-width: 55%; float: left; margin-right: 4%;" name="title"
+                                            class="form-control input-sm" placeholder="Unesite najvecu cenu" />
+                                    
+                                        <span class="input-group-btn" style="width:0px;"></span>
+                                       <!-- <label for="rnddugme" style="margin-bottom: 5px; margin-top: 20px;">Prikazite sobe nasumicno: </label>
+                                        <button type="button" (click)="shuffle(rooms)"
+                                            class="btn btn-success btn-send pt-2 btn-block" name="rnddugme" style="max-width: 70%;">
+                                             Random
+                                        </button>-->
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Background image -->
+</header>
+<div class="ui grid posts">
+
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <app-rooms *ngFor="let room of rooms | filterByUP:userPrice;" [room]="room"
+                (obrisiEvent)="obrisiSobu($event)" (izmeniEvent)="izmeniSobu($event)">
+                </app-rooms>
+            </div>
+        </div>
+    </section>
+</div>
